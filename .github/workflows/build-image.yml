@@ -12,7 +12,7 @@ jobs:
     - name: Checkout CustomPiOS
       uses: actions/checkout@v2
       with:
-        repository: 'guysoft/CustomPiOS'
+        repository: 'andysheen/CustomPiOS'
         ref: master
         path: CustomPiOS
 
