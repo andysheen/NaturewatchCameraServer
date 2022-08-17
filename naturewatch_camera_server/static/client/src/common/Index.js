@@ -19,7 +19,6 @@ class Index extends React.Component {
         this.handleFeedRefresh = this.handleFeedRefresh.bind(this);
         this.onSettingsOpen = this.onSettingsOpen.bind(this);
         this.onSettingsClose = this.onSettingsClose.bind(this);
-        this.onTimelapseActiveChange = this.onTimelapseActiveChange.bind(this);
 
         this.state = {
             feedStatus: "active",
@@ -27,8 +26,7 @@ class Index extends React.Component {
                 mode: "inactive",
                 time_started: 0
             },
-            isSettingsOpen: false,
-            isTimelapseActive: false,
+            isSettingsOpen: false
         };
     }
 
@@ -162,13 +160,6 @@ class Index extends React.Component {
         this.setState({isSettingsOpen: false});
     }
 
-    onTimelapseActiveChange(value) {
-        this.setState({isTimelapseActive: value === "on" ? true : false},
-            () => {
-                console.log("Timelapse: " + this.state.isTimelapseActive);
-            });
-    }
-
     render() {
         return(
             <div className="index">
@@ -197,7 +188,7 @@ class Index extends React.Component {
                                 </Col>
                                 <Col xs={6}>
                                     <SessionButton
-                                        type={this.state.isTimelapseActive ? "timelapse" : "photo"}
+                                        type={"photo"}
                                         onButtonClick={this.onSessionButtonClick}
                                         sessionStatus={this.state.sessionStatus.mode}
                                     />
@@ -207,8 +198,6 @@ class Index extends React.Component {
                                 isOpen={this.state.isSettingsOpen}
                                 onOpen={this.onSettingsOpen}
                                 onClose={this.onSettingsClose}
-                                onTimelapseActiveChange={this.onTimelapseActiveChange}
-                                isTimelapseActive={this.state.isTimelapseActive}
                             />
                             {!this.state.isSettingsOpen && <Link to="/gallery" className="btn btn-secondary">Gallery</Link>}
                         </Col>

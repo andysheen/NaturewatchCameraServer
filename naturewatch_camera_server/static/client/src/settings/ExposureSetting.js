@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import {ToggleButtonGroup, ToggleButton} from 'react-bootstrap';
 
 class ExposureSetting extends React.Component {
     constructor(props) {
@@ -44,19 +44,8 @@ class ExposureSetting extends React.Component {
         }
     }
 
-    // Inspired from https://www.codevscolor.com/javascript-nearest-number-in-array#method-3-using-sort-
-    findClosest = (arr, num) => {
-        if (arr == null) {
-            return
-        }
-        return arr.sort((a, b) => Math.abs(b - num) - Math.abs(a - num)).pop();
-    }
-
     getIndexFromShutterSpeed(shutterSpeed) {
-        // Get nearest value
-        shutterSpeed = this.findClosest(Object.values(this.cameraShutterSpeeds), shutterSpeed)
-
-        for (var i = 0; i < Object.keys(this.cameraShutterSpeeds).length; i++) {
+        for (var i=0; i < Object.keys(this.cameraShutterSpeeds).length; i++) {
             if (Object.values(this.cameraShutterSpeeds)[i] === shutterSpeed) {
                 return i;
             }
@@ -83,12 +72,12 @@ class ExposureSetting extends React.Component {
                     <label htmlFor="shutter-speed" className="shutter-speed-label">
                         Fixed Shutter Speed: <span>{this.renderShutterSpeedFraction(this.props.shutterSpeed)}</span>
                     </label>
-                    <br />
+                    <br/>
                     <input
                         type="range"
                         id="shutter-speed"
                         min="0"
-                        max={Object.keys(this.cameraShutterSpeeds).length - 1}
+                        max={Object.keys(this.cameraShutterSpeeds).length-1}
                         step="1"
                         value={this.getIndexFromShutterSpeed(this.props.shutterSpeed)}
                         onChange={this.onShutterChange}
@@ -107,7 +96,7 @@ class ExposureSetting extends React.Component {
                     <ToggleButton type="radio" value="auto">Auto</ToggleButton>
                     <ToggleButton type="radio" value="off">Manual</ToggleButton>
                 </ToggleButtonGroup>
-                <br />
+                <br/>
                 {this.renderDetailedSettings()}
             </div>
         );

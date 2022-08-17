@@ -258,16 +258,14 @@ class CameraController(threading.Thread):
         if self.rotated_camera != rotation:
             self.rotated_camera = rotation
             if self.rotated_camera is True:
-                if picamera_exists:
-                    self.camera.rotation = 180
+                self.camera.rotation = 180
                 new_config = self.config
                 new_config["rotate_camera"] = 1
                 module_path = os.path.abspath(os.path.dirname(__file__))
                 self.config = self.update_config(new_config,
                                                  os.path.join(module_path, self.config["data_path"], 'config.json'))
             else:
-                if picamera_exists:
-                    self.camera.rotation = 0
+                self.camera.rotation = 0
                 new_config = self.config
                 new_config["rotate_camera"] = 0
                 module_path = os.path.abspath(os.path.dirname(__file__))

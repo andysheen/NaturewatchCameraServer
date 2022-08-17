@@ -249,4 +249,3 @@ dist
 package-lock.json
 yarn-lock.json
 yarn.lock
-*.zip
